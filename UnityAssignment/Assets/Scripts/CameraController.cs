@@ -32,6 +32,6 @@ public class CameraController : MonoBehaviour
         float yDifference = Mathf.Abs(ibbScreenPosition.y - obbScreenPosition.y) / Camera.pixelHeight;
         float maxDifference = Mathf.Max(xDifference, yDifference);
         Camera.orthographicSize *= maxDifference * 1.2f;
-        Camera.orthographicSize = Mathf.Min(Camera.orthographicSize, 3f);
+        Camera.orthographicSize = Mathf.Max(Camera.orthographicSize, 3f);
     }
 }
