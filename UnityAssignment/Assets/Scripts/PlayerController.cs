@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             gravityDirection *= -1f;
             transform.localScale = new Vector3(transform.localScale.x, -transform.localScale.y, transform.localScale.z);
             // Ensure that the player has enough vertical momentum after a flip to escape a new flip
-            if (-movement.y / gravityDirection.y < jumpSpeed)
+            if (0f <= -movement.y / gravityDirection.y && -movement.y / gravityDirection.y < jumpSpeed)
             {
                 movement.y = -gravityDirection.y * jumpSpeed;
             }
