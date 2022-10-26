@@ -13,22 +13,34 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool hasOtherPlayerOnHead = false;
 
+
     // Input keys
     [SerializeField]
-    KeyCode leftKey, rightKey, jumpKey;
+    KeyCode leftKey = KeyCode.A, rightKey = KeyCode.D, jumpKey = KeyCode.W;
     // Movement values
     [SerializeField]
     float moveSpeed = 2.5f, jumpSpeed = 5f;
     [SerializeField]
     float gravityScale = Physics.gravity.magnitude;
-    Vector3 gravityDirection = Vector3.down;
 
+    // Fields used for movement between frames
+    Vector3 gravityDirection = Vector3.down;
     Vector2 movement = Vector2.zero;
+
+    // Starting transform to reset to when respawning
+    Vector3 startPosition;
+    Quaternion startRotation;
+    Vector3 startScale;
+
+    // Mask that allows raycast to only hit level geometry
     LayerMask geometryLayerMask;
 
     // Start is called before the first frame update
     void Start()
     {
+        startPosition = transform.localPosition;
+        startRotation = transform.localRotation;
+        startScale = transform.localScale;
         Collider = GetComponent<Collider>();
         Rigidbody = GetComponent<Rigidbody>();
         gravityScale = Physics.gravity.magnitude;
@@ -89,5 +101,13 @@ public class PlayerController : MonoBehaviour
 
         // Apply movement
         Rigidbody.velocity = movement;
+    }
+
+    public void Respawn()
+    {
+        // Reset transform values
+        transform.localPosition = startPosition;
+        transform.localRotation = startRotation;
+        transform.localScale = startScale;
     }
 }
