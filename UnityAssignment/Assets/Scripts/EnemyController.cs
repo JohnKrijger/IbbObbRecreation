@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // The bounds of this object are the bounds of the enemy's movement
-    public Collider attachedFloor;
+    // Movement constraints
+    [SerializeField]
+    private Collider attachedFloor;
+    [SerializeField]
+    private float distanceFromEdges = 1f;
+    [SerializeField]
+    private float movementSpeed = 1.5f;
+    [SerializeField]
+    private int movementDirection = 1;
 
     // Trigger of the spikey part of the enemy, this hurts the player
     [SerializeField]
@@ -22,7 +29,13 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        // Revert direction if enemy gets too close to the edges of its platform
+        if (transform.position.x * movementDirection + distanceFromEdges >=
+            attachedFloor.bounds.center.x * movementDirection + attachedFloor.bounds.extents.x)
+        {
+            movementDirection *= -1;
+        }
+        transform.localPosition += movementDirection * movementSpeed * Time.deltaTime * Vector3.right;
     }
 
     void OnSpikeyTriggerEnter(Collider other)

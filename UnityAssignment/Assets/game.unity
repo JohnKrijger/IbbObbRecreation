@@ -481,6 +481,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedFloor: {fileID: 78030503}
+  distanceFromEdges: 1
+  movementSpeed: 1.5
+  movementDirection: 1
   spikeyTrigger: {fileID: 857361152}
   spiritTrigger: {fileID: 947828200}
 --- !u!1 &786672378
