@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // Flip gravity if there is a floor "above" the player.
         if (Physics.Raycast(

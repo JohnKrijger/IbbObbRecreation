@@ -7,12 +7,12 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class GroundCheck : MonoBehaviour
 {
-    private int groundCount = 0;
+    int groundCount = 0;
 
     public bool IsGrounded => groundCount > 0;
 
-    private bool isOnOtherPlayer = false;
-    private PlayerController otherPlayer;
+    bool isOnOtherPlayer = false;
+    PlayerController otherPlayer;
 
     public bool IsOnOtherPlayer(out PlayerController otherPlayer)
     {
@@ -20,7 +20,7 @@ public class GroundCheck : MonoBehaviour
         return isOnOtherPlayer;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Floor") || other.CompareTag("Player"))
         {
@@ -34,7 +34,7 @@ public class GroundCheck : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Floor") || other.CompareTag("Player"))
         {

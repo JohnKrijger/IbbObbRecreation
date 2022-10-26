@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
         Camera.orthographicSize = Mathf.Max(Camera.orthographicSize, 3f);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         smoothIbbPosition *= smoothingRate;
         smoothObbPosition *= smoothingRate;

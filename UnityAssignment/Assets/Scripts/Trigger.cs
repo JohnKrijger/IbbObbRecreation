@@ -12,7 +12,7 @@ public class Trigger : MonoBehaviour
     public Action<Collider> TriggerExit;
     public Action<Collider> TriggerStay;
 
-    private void OnTriggerEnter(Collider other) => TriggerEnter?.Invoke(other);
-    public void OnTriggerExit(Collider other) => TriggerExit?.Invoke(other);
-    public void OnTriggerStay(Collider other) => TriggerStay?.Invoke(other);
+    void OnTriggerEnter(Collider other) => TriggerEnter?.Invoke(other);
+    void OnTriggerExit(Collider other) => TriggerExit?.Invoke(other);
+    void OnTriggerStay(Collider other) => TriggerStay?.Invoke(other);
 }

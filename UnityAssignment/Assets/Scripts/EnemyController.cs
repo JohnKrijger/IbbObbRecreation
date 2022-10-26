@@ -6,20 +6,20 @@ public class EnemyController : MonoBehaviour
 {
     // Movement constraints
     [SerializeField]
-    private Collider attachedFloor;
+    Collider attachedFloor;
     [SerializeField]
-    private float distanceFromEdges = 1f;
+    float distanceFromEdges = 1f;
     [SerializeField]
-    private float movementSpeed = 1.5f;
+    float movementSpeed = 1.5f;
     [SerializeField]
-    private int movementDirection = 1;
+    int movementDirection = 1;
 
     // Trigger of the spikey part of the enemy, this hurts the player
     [SerializeField]
-    private Trigger spikeyTrigger;
+    Trigger spikeyTrigger;
     // Trigger of the spirit part of the enemy, touching this kills the enemy
     [SerializeField]
-    private Trigger spiritTrigger;
+    Trigger spiritTrigger;
 
     void Start()
     {
