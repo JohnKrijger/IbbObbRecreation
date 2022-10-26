@@ -64,20 +64,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Flip gravity if there is no floor "beneath" the player.
-        bool flipGravity = true;
+        // Flip gravity if there is a floor "above" the player.
         if (Physics.Raycast(
             transform.position,
-            gravityDirection,
+            -gravityDirection,
             out RaycastHit hit,
             Mathf.Infinity,
             geometryLayerMask,
             QueryTriggerInteraction.Collide
         ) && hit.collider.CompareTag("Floor"))
-        {
-            flipGravity = false;
-        }
-        if (flipGravity)
         {
             // Flip the player and their gravity
             gravityDirection *= -1f;
@@ -88,6 +83,7 @@ public class PlayerController : MonoBehaviour
                 movement.y = -gravityDirection.y * jumpSpeed;
             }
         }
+
         // Apply gravity manually
         Rigidbody.AddForce(gravityScale * gravityDirection, ForceMode.Acceleration);
 
