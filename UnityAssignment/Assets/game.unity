@@ -247,7 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55e2f333f67fc44aad62b7cd541d268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCount: 0
 --- !u!65 &246950287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,7 +258,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.01, z: 0.4}
+  m_Size: {x: 0.399, y: 0.01, z: 0.399}
   m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!1 &299675511
 GameObject:
@@ -400,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 971458302}
+  hasOtherPlayerOnHead: 0
   leftKey: 276
   rightKey: 275
   jumpKey: 273
@@ -501,6 +501,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ibb: {fileID: 1091909224}
   obb: {fileID: 1081160549}
+  focusRatio: 0.8
+  smoothingRate: 0.9
 --- !u!92 &786672381
 Behaviour:
   m_ObjectHideFlags: 0
@@ -936,7 +938,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.01, z: 0.4}
+  m_Size: {x: 0.399, y: 0.01, z: 0.399}
   m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!114 &971458302
 MonoBehaviour:
@@ -950,7 +952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55e2f333f67fc44aad62b7cd541d268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCount: 0
 --- !u!4 &1081160549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400042, guid: 98936e3ed0a1978428d5dac5c103f2a0,
@@ -1328,6 +1329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 246950286}
+  hasOtherPlayerOnHead: 0
   leftKey: 97
   rightKey: 100
   jumpKey: 119

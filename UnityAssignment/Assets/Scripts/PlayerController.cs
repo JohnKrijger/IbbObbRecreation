@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public Rigidbody Rigidbody { get; private set; }
 
     public GroundCheck groundCheck;
+    [HideInInspector]
+    public bool hasOtherPlayerOnHead = false;
+
     // Input keys
     [SerializeField]
     KeyCode leftKey, rightKey, jumpKey;
@@ -36,14 +39,22 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Get horizontal movement
-        movement.x = 0f;
+        if (groundCheck.IsOnOtherPlayer(out PlayerController otherPlayer))
+        {
+            movement.x = otherPlayer.Rigidbody.velocity.x;
+        }
+        else
+        {
+            movement.x = 0f;
+        }
         if (Input.GetKey(leftKey)) { movement.x -= moveSpeed; }
         if (Input.GetKey(rightKey)) { movement.x += moveSpeed; }
 
         // Get vertical movement
         if (groundCheck.IsGrounded && Input.GetKeyDown(jumpKey))
         {
-            movement.y = -gravityDirection.y * jumpSpeed;
+            // Double jump force when carrying other player
+            movement.y = -gravityDirection.y * jumpSpeed * (hasOtherPlayerOnHead ? 2f : 1f);
         }
         else
         {

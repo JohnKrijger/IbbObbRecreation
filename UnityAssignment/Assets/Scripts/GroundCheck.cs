@@ -11,11 +11,26 @@ public class GroundCheck : MonoBehaviour
 
     public bool IsGrounded => groundCount > 0;
 
+    private bool isOnOtherPlayer = false;
+    private PlayerController otherPlayer;
+
+    public bool IsOnOtherPlayer(out PlayerController otherPlayer)
+    {
+        otherPlayer = this.otherPlayer;
+        return isOnOtherPlayer;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Floor") || other.CompareTag("Player"))
         {
             groundCount++;
+            if (other.CompareTag("Player"))
+            {
+                isOnOtherPlayer = true;
+                otherPlayer = other.GetComponent<PlayerController>();
+                otherPlayer.hasOtherPlayerOnHead = true;
+            }
         }
     }
 
@@ -24,6 +39,12 @@ public class GroundCheck : MonoBehaviour
         if (other.CompareTag("Floor") || other.CompareTag("Player"))
         {
             groundCount--;
+            if (other.CompareTag("Player"))
+            {
+                isOnOtherPlayer = false;
+                otherPlayer.hasOtherPlayerOnHead = false;
+                otherPlayer = null;
+            }
         }
     }
 }
